@@ -1,0 +1,156 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "User API",
+        "description": "User API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://localhost:8080"
+        }
+    ],
+    "paths": {
+
+        "/api/users":
+        {
+            "post":
+            {
+                "description": "Register New user",
+                "requestBody": {
+                    "content": {
+                        "application/json":
+                        {
+                            "examples": {
+                                "jabriel":
+                                {
+                                    "description": "Register User Jabriel",
+                                    "value": {
+                                        "username": "Jirbthagoras",
+                                        "password": "password",
+                                        "name": "Jabriel Hans Talula"
+                                    }
+                                }
+                            },
+                            "schema":
+                            {
+                                "type": ["object"],
+                                "required": [
+                                    "name", "username", "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": ["string"]
+                                    },
+                                    "password": {
+                                        "type": ["string"]
+                                    },
+                                    "name": {
+                                        "type": ["string"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400":
+                    {
+                        "description": "Error Registering new User",
+                        "content": {
+                            "application/json":
+                            {
+                                "examples": {
+                                    "validationError":
+                                    {
+                                        "description": "Validation error",
+                                        "value": {
+                                            "errors":
+                                            {
+                                                "username": "Username Must've 20 characters"
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    },
+                    "201":
+                    {
+                        "description": "Success register new user",
+                        "content": {
+                            "application/json":
+                            {
+                                "examples": {
+                                    "success":
+                                    {
+                                        "description": "New user registered",
+                                        "value": {
+                                            "data": {
+                                                "id": 1,
+                                                "username": "Jirbthagoras",
+                                                "name": "Jabriel Hans Talula"
+                                            }
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": ["number"]
+                                                }
+                                            },
+                                            "username": {
+                                                "type": ["string"]
+                                            },
+                                            "name": {
+                                                "type": ["string"]
+                                            }
+                                        },
+                                        "errors":
+                                        {
+                                            "type": ["object"]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/api/users/login":
+        {
+            "post":
+            {
+                "description": "Log Into User"
+            }
+        },
+
+        "/api/users/current":
+        {
+            "get":
+            {
+                "description": "Get Current User"
+            },
+
+            "patch": {
+                "description": "Update current user"
+            }
+        },
+
+        "/api/user/logout":
+        {
+            "delete": {
+                "description": "Logout current user"
+            }
+        }
+
+    }
+}
