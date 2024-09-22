@@ -103,13 +103,13 @@
                                             "properties": {
                                                 "id": {
                                                     "type": ["number"]
+                                                },
+                                                "username": {
+                                                    "type": ["string"]
+                                                },
+                                                "name": {
+                                                    "type": ["string"]
                                                 }
-                                            },
-                                            "username": {
-                                                "type": ["string"]
-                                            },
-                                            "name": {
-                                                "type": ["string"]
                                             }
                                         },
                                         "errors":
@@ -129,7 +129,64 @@
         {
             "post":
             {
-                "description": "Log Into User"
+                "description": "Log Into User",
+                "requestBody": {
+                    "content": {
+                        "application/json":
+                        {
+                            "schema": {
+                                "type": ["object"],
+                                "properties": {
+                                    "username":
+                                    {
+                                        "type": ["string"]
+                                    },
+                                    "password": {
+                                        "type": ["string"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":
+                    {
+                        "description": "Success Login",
+                        "content": {
+                            "application/json":
+                            {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": ["number"]
+                                                },
+                                                "username": {
+                                                    "type": ["string"]
+                                                },
+                                                "name": {
+                                                    "type": ["string"]
+                                                },
+                                                "token":
+                                                {
+                                                    "type": ["string"]
+                                                }
+                                            }
+                                        },
+                                        "errors":
+                                        {
+                                            "type": ["object"]
+                                        }
+                                }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
@@ -137,18 +194,188 @@
         {
             "get":
             {
-                "description": "Get Current User"
+                "description": "Get Current User",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Succes Get User",
+                        "content": {
+                            "application/json":
+                            {
+                                "schema": {
+                                    "type": ["object"],
+                                    "properties": {
+                                        "data":
+                                        {
+                                            "type": ["object"],
+                                            "properties": {
+                                                "id": {
+                                                    "type": [
+                                                        "integer"
+                                                    ]
+                                                },
+                                                "username": {
+                                                    "type": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "name": {
+                                                    "type": ["string"]
+                                                }
+                                            }
+                                        },
+                                        "errors":
+                                        {
+                                            "type": ["object"],
+                                            "properties": {
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
 
             "patch": {
-                "description": "Update current user"
+                "description": "Update current user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Current Useer",
+                    "content": {
+                        "application/json":
+                        {
+                            "schema": {
+                                "type": ["object"],
+                                "properties": {
+                                    "name": {
+                                        "type": ["string"]
+                                    },
+                                    "password": {
+                                        "type": ["string"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succes Update User",
+                        "content": {
+                            "application/json":
+                            {
+                                "schema": {
+                                    "type": [
+                                        "object"
+                                    ],
+                                    "properties": {
+                                        "data": {
+                                            "type": [
+                                                "object"
+                                            ],
+                                            "properties": {
+                                                "id": {
+                                                    "type": [
+                                                        "integer"
+                                                    ]
+                                                },
+                                                "username": {
+                                                    "type": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "name": {
+                                                    "type": [
+                                                        "string"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": [
+                                                "object"
+                                            ],
+                                            "properties": {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
 
         "/api/user/logout":
         {
             "delete": {
-                "description": "Logout current user"
+                "description": "Logout current user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Succes Update User",
+                        "content": {
+                            "application/json":
+                            {
+                                "schema": {
+                                    "type": [
+                                        "object"
+                                    ],
+                                    "properties": {
+                                        "data": {
+                                            "type": [
+                                                "object"
+                                            ],
+                                            "properties": {
+                                                "id": {
+                                                    "type": [
+                                                        "integer"
+                                                    ]
+                                                },
+                                                "username": {
+                                                    "type": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "name": {
+                                                    "type": [
+                                                        "string"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": [
+                                                "object"
+                                            ],
+                                            "properties": {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
