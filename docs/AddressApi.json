@@ -1,0 +1,423 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Address Api",
+    "description": "Address Api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/api/contacts/{idContact}/addresses": {
+      "post": {
+        "description": "Create New Address",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "name": "idContact",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "Create New Address",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": [
+                  "object"
+                ],
+                "properties": {
+                  "street": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "city": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "province": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "country": {
+                    "type": [
+                      "string"
+                    ]
+                  },
+                  "postal_code": {
+                    "type": [
+                      "string"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Succes Create New Address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": [
+                    "object"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": [
+                        "object"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": [
+                            "number"
+                          ]
+                        },
+                        "street": {
+                          "type": [
+                            "string"
+                          ]
+                        },
+                        "city": {
+                          "type": [
+                            "string"
+                          ]
+                        },
+                        "province": {
+                          "type": [
+                            "string"
+                          ]
+                        },
+                        "country": {
+                          "type": [
+                            "string"
+                          ]
+                        },
+                        "postal_code": {
+                          "type": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": [
+                        "object"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Get List Address",
+        "responses": {
+          "200":
+          {
+                "description": "Success Get Lists of Addresses",
+                "content": {
+                  "application/json":
+                  {
+                    "schema": {
+                      "type": ["object"],
+                      "properties": {
+                        "data":
+                        {
+                          "type": ["array"],
+                          "items": {
+                            "type": ["object"],
+                            "properties": {
+                              "id": {
+                                "type": [
+                                  "number"
+                                ]
+                              },
+                              "street": {
+                                "type": [
+                                  "string"
+                                ]
+                              },
+                              "city": {
+                                "type": [
+                                  "string"
+                                ]
+                              },
+                              "province": {
+                                "type": [
+                                  "string"
+                                ]
+                              },
+                              "country": {
+                                "type": [
+                                  "string"
+                                ]
+                              },
+                              "postal_code": {
+                                "type": [
+                                  "string"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "errors":
+                        {
+                          "type": ["object"]
+                        }
+                      }
+                    }
+                  }
+                }
+
+
+          }
+        }
+      }
+    },
+
+      "/api/contacts/{idContact}/addresses/{idAddress}": {
+        "get": {
+          "description": "Get Address",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header"
+            },
+            {
+              "name": "idContact",
+              "in": "path"
+            },
+            {
+              "name": "idAddress",
+              "in": "path"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Succes Get Address",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": [
+                      "object"
+                    ],
+                    "properties": {
+                      "data": {
+                        "type": [
+                          "object"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": [
+                              "number"
+                            ]
+                          },
+                          "street": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "city": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "province": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "country": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "postal_code": {
+                            "type": [
+                              "string"
+                            ]
+                          }
+                        }
+                      },
+                      "errors": {
+                        "type": [
+                          "object"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "put": {
+          "description": "Update Address",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header"
+            },
+            {
+              "name": "idContact",
+              "in": "path"
+            },
+            {
+              "name": "idAddress",
+              "in": "path"
+            }
+          ],
+          "requestBody": {
+            "description": "Update Existing Contact Address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": [
+                    "object"
+                  ],
+                  "properties": {
+                    "street": {
+                      "type": [
+                        "string"
+                      ]
+                    },
+                    "city": {
+                      "type": [
+                        "string"
+                      ]
+                    },
+                    "province": {
+                      "type": [
+                        "string"
+                      ]
+                    },
+                    "country": {
+                      "type": [
+                        "string"
+                      ]
+                    },
+                    "postal_code": {
+                      "type": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Succes Update Address",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": [
+                      "object"
+                    ],
+                    "properties": {
+                      "data": {
+                        "type": [
+                          "object"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": [
+                              "number"
+                            ]
+                          },
+                          "street": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "city": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "province": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "country": {
+                            "type": [
+                              "string"
+                            ]
+                          },
+                          "postal_code": {
+                            "type": [
+                              "string"
+                            ]
+                          }
+                        }
+                      },
+                      "errors": {
+                        "type": [
+                          "object"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete Address",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header"
+            },
+            {
+              "name": "idContact",
+              "in": "path"
+            },
+            {
+              "name": "idAddress",
+              "in": "path"
+            }
+          ],
+          "responses": {
+            "200":
+            {
+              "description": "Success Delete Existing Address",
+              "content": {
+                "application/json":
+                {
+                  "schema": {
+                      "type": ["object"],
+                      "properties": {
+                        "data": {
+                          "type": ["boolean"]
+                        },
+                        "errors": {
+                          "type": ["object"]
+                        }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+}
