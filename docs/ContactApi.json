@@ -93,8 +93,70 @@
           {
             "name": "Authorization",
             "in": "header"
+          },
+          {
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "name": "email",
+            "in": "query"
+          },
+          {
+            "name": "phone",
+            "in": "query"
+          },
+          {
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "name": "page",
+            "in": "query"
           }
-        ]
+        ],
+        "responses": {
+          "200":
+          {
+            "description": "Succes Search Contact",
+            "content": {
+              "application/json":
+              {
+                "schema": {
+                  "type": ["object"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": ["object"],
+                        "properties": {
+                          "id": {
+                            "type": ["number"]
+                          },
+                          "first_name": {
+                            "type": ["string"]
+                          },
+                          "last_name": {
+                            "type": ["string"]
+                          },
+                          "phone": {
+                            "type": ["string"]
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": ["object"]
+                    },
+                    "meta": {
+                      "type": ["object"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
 
@@ -106,8 +168,76 @@
           {
             "name": "Authorization",
             "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path"
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "Update Existing Contact",
+          "content": {
+            "application/json":
+            {
+              "schema":
+              {
+                "type": ["object"],
+                "properties": {
+                  "first_name": {
+                    "type": ["string"]
+                  },
+                  "last_name": {
+                    "type": ["string"]
+                  },
+                  "email": {
+                    "type": ["string"]
+                  },
+                  "phone":
+                  {
+                    "type": ["string"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":
+          {
+            "description": "Success Update Existing Contact",
+            "content": {
+              "application/json":
+              {
+                "schema": {
+                  "type": ["object"],
+                  "properties": {
+                    "data":
+                    {
+                      "type": ["object"],
+                      "properties": {
+                        "id": {
+                          "type": ["number"]
+                        },
+                        "first_name": {
+                          "type": ["string"]
+                        },
+                        "last_name": {
+                          "type": ["string"]
+                        },
+                        "phone": {
+                          "type": ["string"]
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": ["object"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
 
       "get":
@@ -117,8 +247,49 @@
           {
             "name": "Authorization",
             "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path"
           }
-        ]
+        ],
+        "responses": {
+          "200":
+          {
+            "description": "Success Get Specific Contact",
+            "content": {
+              "application/json":
+              {
+                "schema": {
+                  "type": ["object"],
+                  "properties": {
+                    "data":
+                    {
+                      "type": ["object"],
+                      "properties": {
+                        "id": {
+                          "type": ["number"]
+                        },
+                        "first_name": {
+                          "type": ["string"]
+                        },
+                        "last_name": {
+                          "type": ["string"]
+                        },
+                        "phone": {
+                          "type": ["string"]
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": ["object"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
 
       "delete": {
@@ -127,8 +298,36 @@
           {
             "name": "Authorization",
             "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path"
           }
-        ]
+        ],
+        "responses": {
+          "200":
+          {
+            "description": "Success Delete Specific Contact",
+            "content": {
+              "application/json":
+              {
+                "schema": {
+                  "type": ["object"],
+                  "properties": {
+                    "data":
+                    {
+                      "type": ["boolean"]
+                    },
+
+                    "errors": {
+                      "type": ["object"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
     }
