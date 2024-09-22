@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://localhost:8080"
+            "url": "http://localhost:8080"
         }
     ],
     "paths": {
@@ -343,32 +343,13 @@
                                     "properties": {
                                         "data": {
                                             "type": [
-                                                "object"
-                                            ],
-                                            "properties": {
-                                                "id": {
-                                                    "type": [
-                                                        "integer"
-                                                    ]
-                                                },
-                                                "username": {
-                                                    "type": [
-                                                        "string"
-                                                    ]
-                                                },
-                                                "name": {
-                                                    "type": [
-                                                        "string"
-                                                    ]
-                                                }
-                                            }
+                                                "boolean"
+                                            ]
                                         },
                                         "errors": {
                                             "type": [
                                                 "object"
-                                            ],
-                                            "properties": {
-                                            }
+                                            ]
                                         }
                                     }
                                 }

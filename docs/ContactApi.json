@@ -1,0 +1,137 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Contact API",
+    "description": "Contact API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+
+    "/api/contacts": {
+      "post": {
+        "description": "Create New Contact",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "description": "Create New Contact",
+          "content": {
+            "application/json":
+            {
+              "schema":
+              {
+                "type": ["object"],
+                "properties": {
+                  "first_name": {
+                    "type": ["string"]
+                  },
+                  "last_name": {
+                    "type": ["string"]
+                  },
+                  "email": {
+                    "type": ["string"]
+                  },
+                  "phone":
+                  {
+                    "type": ["string"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":
+          {
+            "description": "Success Create New Contact",
+            "content": {
+              "application/json":
+              {
+                "schema": {
+                  "type": ["object"],
+                  "properties": {
+                    "data":
+                    {
+                      "type": ["object"],
+                      "properties": {
+                        "id": {
+                          "type": ["number"]
+                        },
+                        "first_name": {
+                          "type": ["string"]
+                        },
+                        "last_name": {
+                          "type": ["string"]
+                        },
+                        "phone": {
+                          "type": ["string"]
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": ["object"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "get": {
+        "description": "Search Contact",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ]
+      }
+    },
+
+    "/api/contacts/{id}":
+    {
+      "put": {
+        "description": "Update Existing Contact",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ]
+      },
+
+      "get":
+      {
+        "description": "Get Contact",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ]
+      },
+
+      "delete": {
+        "description": "Delete Existing Contact",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ]
+      }
+
+    }
+
+  }
+}
