@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Sanctum\Contracts\HasAbilities;
 
 class User extends Model
 {
@@ -13,4 +15,9 @@ class User extends Model
     protected $keyType = "integer";
     public $timestamps = true;
     public $incrementing = true;
+
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class, 'user_id', 'id');
+    }
 }
