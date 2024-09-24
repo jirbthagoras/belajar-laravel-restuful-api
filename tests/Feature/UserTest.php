@@ -64,4 +64,59 @@ class UserTest extends TestCase
                 ]
             ]);
     }
+
+    public function testLoginSuccess()
+    {
+
+        $this->testRegisterSuccess();
+
+        $this->post("/api/users/login", [
+            "username" => "Kenntcky.",
+            "password" => "banona",
+        ])->assertStatus(200)
+            ->assertJson([
+                "data" => [
+                    "username" => "Kenntcky.",
+                    "name" => "Banon Kenta Oktora"
+                ]
+            ]);
+
+    }
+
+    public function testLoginFailed()
+    {
+
+        $this->testRegisterSuccess();
+
+        $this->post("/api/users/login", [
+            "username" => "",
+            "password" => "",
+        ])->assertStatus(401)
+            ->assertJson([
+                "errors" => [
+                    "username" => ["The username field is required."],
+                    "password" => ["The password field is required."]
+                ]
+            ]);
+
+    }
+
+    public function testLoginUsernameOrPasswordWrong()
+    {
+
+        $this->testRegisterSuccess();
+
+        $this->post("/api/users/login", [
+            "username" => "erlangga",
+            "password" => "a",
+        ])->assertStatus(401)
+            ->assertJson([
+                "errors" => [
+                    "message" => ["Username or Password Wrong"]
+                ]
+            ]);
+
+    }
+
+
 }

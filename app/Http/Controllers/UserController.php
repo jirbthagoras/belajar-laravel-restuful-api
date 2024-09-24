@@ -52,7 +52,7 @@ class UserController extends Controller
                         "Username or Password Wrong"
                     ]
                 ]
-            ], 401));
+            ])->setStatusCode(401));
         }
 
         $user->token = \Illuminate\Support\Str::uuid()->toString();
