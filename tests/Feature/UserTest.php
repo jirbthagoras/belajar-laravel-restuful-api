@@ -210,5 +210,29 @@ class UserTest extends TestCase
             ]);
     }
 
+    public function testLogoutSuccess()
+    {
+        $this->seed([UserSeeder::class]);
+
+        $this->withHeaders(["Authorization" => "test"])->
+        delete('/api/users/logout')->assertStatus(200)
+            ->assertJson([
+                "data" => true
+            ]);
+    }
+
+    public function testLogoutFailed()
+    {
+        $this->seed([UserSeeder::class]);
+
+        $this->withHeaders(["Authorization" => "memek"])->
+        delete('/api/users/logout')->assertStatus(401)
+            ->assertJson([
+                "errors" => [
+                    "message" => ["Unauthorized."]
+                ]
+            ]);
+    }
+
 
 }
