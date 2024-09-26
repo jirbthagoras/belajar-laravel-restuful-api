@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotEquals;
 
 class UserTest extends TestCase
 {
@@ -147,6 +150,37 @@ class UserTest extends TestCase
                     "message" => ["Unauthorized."],
                 ]
             ]);
+    }
+
+    public function testUpdateNameSuccess()
+    {
+        $this->seed([UserSeeder::class]);
+
+        $oldUser = User::query()->where("name", "=", "test")->first();
+
+        $this->withHeaders(["Authorization" => "test"])->
+        patch('/api/users/current',
+            ["username" => "memek"]
+        )->assertStatus(200)
+            ->assertJson([
+                "data" => [
+                    "name" => "memek",
+                ]
+            ]);
+
+        $newUser = User::query()->where("name", "=", "test")->first();
+
+        assertNotEquals($oldUser, $newUser);
+    }
+
+    public function testUpdatePasswordSuccess()
+    {
+
+    }
+
+    public function testUpdateFailed()
+    {
+
     }
 
 
