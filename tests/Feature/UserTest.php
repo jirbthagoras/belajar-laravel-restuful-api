@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +61,7 @@ class UserTest extends TestCase
         ])->assertStatus(400)
             ->assertJson([
                 "errors" => [
-                    "username" => "Username already registered",
+                    "username" => ["username already registered"],
                 ]
             ]);
     }
@@ -116,6 +117,36 @@ class UserTest extends TestCase
                 ]
             ]);
 
+    }
+
+    public function testGetSuccess()
+    {
+
+        $this->seed([UserSeeder::class]);
+
+        $this->get('/api/users/current', [
+            "Authorization" => "test"
+        ])->assertStatus(200)
+            ->assertJson([
+                "data" => [
+                    "username" => "test",
+                ]
+            ]);
+
+    }
+
+
+    public function testGetUnauthorized()
+    {
+        $this->seed([UserSeeder::class]);
+
+        $this->get('/api/users/current', [
+        ])->assertStatus(401)
+            ->assertJson([
+                "errors" => [
+                    "message" => ["Unauthorized."],
+                ]
+            ]);
     }
 
 
