@@ -61,4 +61,9 @@ class UserController extends Controller
 
         return (new USerResource($user))->response()->setStatusCode(200);
     }
+
+    public function get(Request $request): UserResource
+    {
+
+    }
 }
