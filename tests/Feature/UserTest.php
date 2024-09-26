@@ -175,12 +175,39 @@ class UserTest extends TestCase
 
     public function testUpdatePasswordSuccess()
     {
+        $this->seed([UserSeeder::class]);
 
+        $oldUser = User::query()->where("name", "=", "test")->first();
+
+        $this->withHeaders(["Authorization" => "test"])->
+        patch('/api/users/current',
+            ["password" => "baru"]
+        )->assertStatus(200)
+            ->assertJson([
+                "data" => [
+                    "name" => "test",
+                ]
+            ]);
+
+        $newUser = User::query()->where("name", "=", "test")->first();
+
+        assertNotEquals($oldUser, $newUser);
     }
 
-    public function testUpdateFailed()
+    public function testUpdateUnauthorized  ()
     {
+        $this->seed([UserSeeder::class]);
 
+        $oldUser = User::query()->where("name", "=", "test")->first();
+
+        $this->patch('/api/users/current',
+            ["username" => "test1"]
+        )->assertStatus(401)
+            ->assertJson([
+                "errors" => [
+                    "message" => ["Unauthorized."]
+                ]
+            ]);
     }
 
 
