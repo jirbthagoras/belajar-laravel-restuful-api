@@ -35,7 +35,6 @@ class ApiAuthMiddleware
 
         }
 
-
         if($authenticate){
             return $next($request);
         } else {

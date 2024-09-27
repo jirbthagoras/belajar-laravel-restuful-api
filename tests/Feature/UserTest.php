@@ -225,11 +225,10 @@ class UserTest extends TestCase
     {
         $this->seed([UserSeeder::class]);
 
-        $this->withHeaders(["Authorization" => "memek"])->
+        $this->withHeaders(["Authorization" => "test2"])->
         delete('/api/users/logout')->assertStatus(401)
             ->assertJson([
-                "errors" => [
-                    "message" => ["Unauthorized."]
+                "errors" => ["message" => ["Unauthorized."]
                 ]
             ]);
     }
