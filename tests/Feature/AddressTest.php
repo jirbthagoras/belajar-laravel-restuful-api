@@ -56,5 +56,18 @@ class AddressTest extends TestCase
 
     }
 
+    public function testRemove()
+    {
+
+        $this->seed([UserSeeder::class, ContactSeeder::class, AddressSeeder::class]);
+
+        $address = Address::query()->limit(1)->first();
+
+        $this->withHeaders(["Authorization" => "test"])
+            ->delete("/api/contacts/$address->contact_id/addresses/$address->id")
+            ->assertStatus(200);
+
+    }
+
 
 }

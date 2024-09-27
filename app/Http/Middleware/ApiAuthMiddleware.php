@@ -25,14 +25,12 @@ class ApiAuthMiddleware
             $authenticate = false;
         }
 
-        $user = \App\Models\User::query()->where('token', $token)->first();
+        $user = \App\Models\User::query()->where('token', "=", $token)->first();
 
         if(!$user){
             $authenticate = false;
         } else {
-
             Auth::login($user);
-
         }
 
         if($authenticate){

@@ -41,6 +41,9 @@ Route::middleware(\App\Http\Middleware\ApiAuthMiddleware::class)->group(function
     Route::get("/contacts/{idContact}/addresses/{idAddress}", [\App\Http\Controllers\AddressController::class, "get"])
     ->where("idContact", "[0-9]+")
     ->where("idAddress", "[0-9]+");
+    Route::delete("/contacts/{idContact}/addresses/{idAddress}", [\App\Http\Controllers\AddressController::class, "remove"])
+    ->where("idContact", "[0-9]+")
+    ->where("idAddress", "[0-9]+");
 
 });
 
