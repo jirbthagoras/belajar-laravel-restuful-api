@@ -4,10 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\Contact;
 use Database\Seeders\ContactSeeder;
+use Database\Seeders\SearchSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class ContactTest extends TestCase
@@ -224,6 +226,19 @@ class ContactTest extends TestCase
                         ],
                     ]
             ]);
+
+    }
+
+    public function testSearch()
+    {
+
+        $this->seed([UserSeeder::class, SearchSeeder::class]);
+
+        $response = $this->withHeaders(["Authorization" => "test"])
+        ->get("/api/contacts?name=first")
+            ->assertStatus(200);
+
+        Log::info(json_encode($response, JSON_PRETTY_PRINT));
 
     }
 
